@@ -47,19 +47,15 @@ try:
             current_status = GPIO.input(port)
             current_time = time.time()
 
-            if current_status != port_status[port]:
-                if use_debouncing:
-                    # If the port status has changed, reset the last stable time
-                    if port_status[port] is None or port_status[port] != current_status:
-                        last_stable_time[port] = current_time
-                        port_status[port] = None  # Indicate that the port is in an unstable state
-
-                    # Check if enough time has passed to consider the change stable
-                    elif current_time - last_stable_time[port] >= debounce_time:
-                        port_status[port] = current_status
-                        changed = True
-                else:
-                    # If debouncing is not used, update immediately
+            if use_debouncing:
+                if current_status != port_status[port] and current_time - last_stable_time[port] >= debounce_time:
+                    port_status[port] = current_status
+                    last_stable_time[port] = current_time
+                    changed = True
+                elif current_status != port_status[port]:
+                    last_stable_time[port] = current_time
+            else:
+                if current_status != port_status[port]:
                     port_status[port] = current_status
                     changed = True
 
