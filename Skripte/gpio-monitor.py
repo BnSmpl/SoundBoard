@@ -30,6 +30,9 @@ def print_gpio_status():
     for port, status in port_status.items():
         status_char = 'X' if status else ''
         print(f"{port}\t{status_char}")
+        
+def clear_console():
+    os.system('clear') # clears the console screen 
 
 def signal_handler(sig, frame):
     print("\nExiting...")
@@ -60,6 +63,7 @@ try:
                     changed = True
 
         if changed:
+            clear_console() # clears console before printing new status
             print_gpio_status()
 
         time.sleep(0.1)  # Check for changes every 100ms
