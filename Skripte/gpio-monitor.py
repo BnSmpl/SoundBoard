@@ -1,6 +1,6 @@
 # requirements: pip3 install RPi.GPIO
 
-# This script monitors the GPIO ports. If the port input is high it prints "x", if it is low it prints nothing.
+# This script monitors the GPIO ports of a Raspberry Pi Model 4. If the port input is high it prints "x", if it is low it prints nothing.
 # To exit the script, press CTRL+C
 
 import RPi.GPIO as GPIO
@@ -17,9 +17,12 @@ gpio_ports = [2, 3, 4, 17, 27, 22, 10, 9, 11, 5, 6, 13, 19, 26, 14, 15, 18, 23, 
 
 # Set up ports as input and initialize their status
 port_status = {}
+last_stable_time = {}
+debounce_time = 0.05  # Time in seconds to wait for a stable port status
 for port in gpio_ports:
     GPIO.setup(port, GPIO.IN)
     port_status[port] = GPIO.input(port)
+    last_stable_time[port] = time.time()
 
 def print_gpio_status():
     print("GPIO Port Status")
@@ -35,14 +38,30 @@ def signal_handler(sig, frame):
 
 signal.signal(signal.SIGINT, signal_handler)
 
+use_debouncing = True # Set to False to disable debouncing
+
 try:
     while True:
         changed = False
         for port in gpio_ports:
             current_status = GPIO.input(port)
-            if port_status[port] != current_status:
-                port_status[port] = current_status
-                changed = True
+            current_time = time.time()
+
+            if current_status != port_status[port]:
+                if use_debouncing:
+                    # If the port status has changed, reset the last stable time
+                    if port_status[port] is None or port_status[port] != current_status:
+                        last_stable_time[port] = current_time
+                        port_status[port] = None  # Indicate that the port is in an unstable state
+
+                    # Check if enough time has passed to consider the change stable
+                    elif current_time - last_stable_time[port] >= debounce_time:
+                        port_status[port] = current_status
+                        changed = True
+                else:
+                    # If debouncing is not used, update immediately
+                    port_status[port] = current_status
+                    changed = True
 
         if changed:
             print_gpio_status()
