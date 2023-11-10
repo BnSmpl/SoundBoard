@@ -5,10 +5,13 @@
 # This script should be run as root (sudo python3 gpio-monitor.py) to avoid permission errors on the keyboard module.
 
 # This script monitors the GPIO ports and prints the status of each port.
+# If a port output is high, it prints an 'X' next to the port number, if it is low, it prints nothing.
+# To exit the script, press CTRL+C
 
 import RPi.GPIO as GPIO
 import time
-import keyboard
+import signal
+import sys
 
 # Setting up GPIO
 GPIO.setmode(GPIO.BCM)  # Use Broadcom SOC channel numbering
@@ -28,13 +31,17 @@ def print_gpio_status():
         status = 'X' if GPIO.input(port) else ''
         print(f"{port}\t{status}")
 
+def signal_handler(sig, frame):
+    print("\nExiting...")
+    GPIO.cleanup()
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
+
 try:
     while True:
         print_gpio_status()
         time.sleep(1)  # Refresh every 1 second
-        if keyboard.is_pressed('x'):
-            print("Exiting...")
-            break
 
 except Exception as e:
     print(f"An error occurred: {e}")
