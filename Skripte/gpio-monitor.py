@@ -1,3 +1,11 @@
+# requirements:
+# pip3 install keyboard
+# pip3 install RPi.GPIO
+
+# This script should be run as root (sudo python3 gpio-monitor.py) to avoid permission errors on the keyboard module.
+
+# This script monitors the GPIO ports and prints the status of each port.
+
 import RPi.GPIO as GPIO
 import time
 import keyboard
