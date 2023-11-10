@@ -1,4 +1,4 @@
-# requirements: pip3 install keyboard RPi.GPIO
+# requirements: pip3 install RPi.GPIO
 
 # This script monitors the GPIO ports. If the port input is high it prints "x", if it is low it prints nothing.
 # To exit the script, press CTRL+C
