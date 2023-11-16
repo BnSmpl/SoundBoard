@@ -25,24 +25,28 @@ for port in gpio_ports:
     port_status[port] = GPIO.input(port)
     last_stable_time[port] = time.time()
 
+
 def print_gpio_status():
     print("GPIO Port Status")
     print("Port\tStatus")
     for port, status in port_status.items():
         status_char = '' if status else 'X'
         print(f"{port}\t{status_char}")
-        
+
+
 def clear_console():
-    os.system('clear') # clears the console screen 
+    os.system('clear')  # clears the console screen
+
 
 def signal_handler(sig, frame):
     print("\nExiting...")
     GPIO.cleanup()
     sys.exit(0)
 
+
 signal.signal(signal.SIGINT, signal_handler)
 
-use_debouncing = False # Set to False to disable debouncing
+use_debouncing = False  # Set to False to disable debouncing
 
 try:
     while True:
@@ -64,7 +68,7 @@ try:
                     changed = True
 
         if changed:
-            clear_console() # clears console before printing new status
+            clear_console()  # clears console before printing new status
             print_gpio_status()
 
         time.sleep(0.1)  # Check for changes every 100ms
