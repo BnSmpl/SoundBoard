@@ -7,6 +7,7 @@ import RPi.GPIO as GPIO
 import time
 import signal
 import sys
+import os
 
 # Setting up GPIO
 GPIO.setmode(GPIO.BCM)  # Use Broadcom SOC channel numbering
