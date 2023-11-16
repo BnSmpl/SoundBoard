@@ -28,7 +28,7 @@ def print_gpio_status():
     print("GPIO Port Status")
     print("Port\tStatus")
     for port, status in port_status.items():
-        status_char = 'X' if status else ''
+        status_char = '' if status else 'X'
         print(f"{port}\t{status_char}")
         
 def clear_console():
@@ -41,7 +41,7 @@ def signal_handler(sig, frame):
 
 signal.signal(signal.SIGINT, signal_handler)
 
-use_debouncing = True # Set to False to disable debouncing
+use_debouncing = False # Set to False to disable debouncing
 
 try:
     while True:
