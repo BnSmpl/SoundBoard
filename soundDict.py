@@ -1,12 +1,12 @@
 # Mapping of keys to sound file names
 sounds = {
-    'a': 'ahhhh.mp3',
-    'b': 'beback.mp3',
-    'c': 'boom.mp3',
-    'd': 'bruh.mp3',
-    'e': 'calming.mp3',
-    'f': 'clap.mp3',
-    'g': 'gae.mp3',
-    'h': 'giveuup.mp3',
-    'i': 'lenz.mp3'
+    'SOUND1': 'ahhhh.mp3',
+    'SOUND2': 'beback.mp3',
+    'SOUND3': 'boom.mp3',
+    'SOUND4': 'bruh.mp3',
+    'SOUND5': 'calming.mp3',
+    'SOUND6': 'clap.mp3',
+    'SOUND7': 'gae.mp3',
+    'SOUND8': 'giveuup.mp3',
+    'SOUND9': 'lenz.mp3'
 }
