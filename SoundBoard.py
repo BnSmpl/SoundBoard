@@ -8,7 +8,7 @@ try:
         
         signal = listen_for_key()
         if signal and signal.signal_type != SignalType.QUIT:
-            print(signal.signal_type.name + sounds.get(signal.signal_type.name)  # Debugging
+            print(signal.signal_type.name + sounds.get(signal.signal_type.name))  # Debugging
             sound_file = sounds.get(signal.signal_type.name, None)
             if sound_file:
                 print(sound_file)
