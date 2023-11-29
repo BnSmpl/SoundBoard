@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-from signals import Signal, SignalType
+from utils.signals import Signal, SignalType
 
 class GPIOListener:
     def __init__(self, gpio_to_signal):
