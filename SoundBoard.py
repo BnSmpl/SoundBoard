@@ -13,7 +13,7 @@ try:
             if sound_file:
                 print(sound_file)
             else:
-                print("No sound mapped for this signal.")
+                print("Unknown:" + signal.signal_type.name)
         elif signal and signal.signal_type == SignalType.QUIT:
             break
         
