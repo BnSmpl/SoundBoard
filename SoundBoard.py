@@ -8,7 +8,6 @@ try:
         
         signal = listen_for_key()
         print("Received signal:", signal)  # Debugging statement
-        print("sounds dictionary:", sounds)
         if signal and signal.signal_type != SignalType.QUIT:
             print("Looking for sound file for signal type:", signal.signal_type.name)  # Debugging
             sound_file = sounds.get(signal.signal_type.name, None)
