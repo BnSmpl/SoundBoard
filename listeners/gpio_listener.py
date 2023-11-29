@@ -46,8 +46,8 @@ class GPIOListener:
                 for port in self.gpio_to_signal.keys():
                     signal = self.generate_signal(port)
                     if signal:
-                        # Process the signal as needed
                         self.signal_queue.put(signal)
+                        # Process the signal as needed
                         print(f"Signal Generated: {signal}")
                 time.sleep(0.1)  # Polling interval
         except KeyboardInterrupt:
