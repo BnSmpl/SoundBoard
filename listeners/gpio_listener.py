@@ -3,15 +3,19 @@ import time
 from utils.signals import Signal, SignalType
 
 class GPIOListener:
-    def __init__(self, gpio_to_signal, signal_queue):
+    def __init__(self, gpio_to_signal, signal_queue, debounce_time=0.1):
         """
         Initializes the GPIOListener with specified GPIO to signal mappings.
 
         Args:
         gpio_to_signal (dict): A dictionary mapping GPIO ports to SignalTypes.
+        signal_queue (queue.Queue): Queue for inter-thread communication.
+        debounce_time (float): Debounce time in seconds.
         """
         self.gpio_to_signal = gpio_to_signal
         self.signal_queue = signal_queue
+        self.debounce_time = debounce_time
+        self.last_signal_time = {port: 0 for port in gpio_to_signal}
         self.setup_gpio()
 
     def setup_gpio(self):
@@ -33,7 +37,9 @@ class GPIOListener:
         Returns:
         Signal: The generated Signal object if the port is active, None otherwise.
         """
-        if GPIO.input(port):
+        current_time = time.time()
+        if GPIO.input(port) and (current_time - self.last_signal_time[port] > self.debounce_time):
+            self.last_signal_time[port] = current_time
             return Signal(self.gpio_to_signal[port])
         return None
 
@@ -48,7 +54,7 @@ class GPIOListener:
                     if signal:
                         self.signal_queue.put(signal)
                         # Process the signal as needed
-                        print(f"Signal Generated: {signal}")
+                        # print(f"Signal Generated: {signal}")
                 time.sleep(0.1)  # Polling interval
         except KeyboardInterrupt:
             print("GPIO listener interrupted. Cleaning up...")
@@ -64,8 +70,14 @@ def start_gpio_listener(signal_queue):
     """
     gpio_to_signal = {
         26: SignalType.SOUND1,
-        # ... other mappings ...
-        7: SignalType.SOUND9
+        13: SignalType.SOUND2,
+        19: SignalType.SOUND3,
+        6:  SignalType.SOUND4,
+        5:  SignalType.SOUND5,
+        20: SignalType.SOUND6,
+        21: SignalType.SOUND7,
+        12: SignalType.SOUND8,
+        7:  SignalType.SOUND9
     }
     listener = GPIOListener(gpio_to_signal, signal_queue)
     listener.listen()
