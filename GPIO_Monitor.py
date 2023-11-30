@@ -27,11 +27,7 @@ class GPIOListener:
             GPIO.setup(port, GPIO.IN)
 
     def generate_signal(self, port):
-        """
-        Checks specified GPIO ports and generates a signal if the port is active.
-        Args: port (int): The GPIO port to check.
-        Returns: Signal object if the port is active, None otherwise.
-        """
+        GPIO.setmode(GPIO.BCM)  # Set GPIO mode here as well
         current_time = time.time()
         if GPIO.input(port) and (current_time - self.last_signal_time[port] > self.debounce_time):
             self.last_signal_time[port] = current_time
@@ -60,6 +56,8 @@ def start_gpio_listener(signal_queue):
         Args:
     signal_queue (queue.Queue): Queue for inter-thread communication.
     """
+    GPIO.setmode(GPIO.BCM)  # Set GPIO mode here
+    
     gpio_to_signal = {
         26: SignalType.SOUND1,
         13: SignalType.SOUND2,
@@ -71,6 +69,7 @@ def start_gpio_listener(signal_queue):
         12: SignalType.SOUND8,
         7:  SignalType.SOUND9
     }
+    
     listener = GPIOListener(gpio_to_signal, signal_queue)
     listener.listen()
 
