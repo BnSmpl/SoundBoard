@@ -97,7 +97,7 @@ polling_interval = 0.1  # Adjust as needed
 
 
 # Function to update and check port status
-def check_and_update_port_status():
+def check_and_update_port_status(signal_queue):
     for port in gpio_to_signal:
         current_status = GPIO.input(port)
         last_status = port_status[port]
@@ -122,7 +122,7 @@ def main():
 
     try:
         while True:
-            check_and_update_port_status()
+            check_and_update_port_status(signal_queue)
             time.sleep(polling_interval)
 
             # Process any queued signals
