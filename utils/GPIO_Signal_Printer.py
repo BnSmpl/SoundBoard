@@ -3,6 +3,7 @@
 import queue
 import threading
 from listeners.gpio_listener import start_gpio_listener
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) # Adds the parent directory to the path. used to import listeners/gpio_listener.py
 
 def process_signals(signal_queue):
     try:
