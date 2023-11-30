@@ -6,10 +6,8 @@ import RPi.GPIO as GPIO
 import time
 from utils.signals import Signal, SignalType
 
-debounce_time = 0.1
-
 class GPIOListener:
-    def __init__(self, gpio_to_signal, signal_queue, debounce_time):
+    def __init__(self, gpio_to_signal, signal_queue, debounce_time=0.1 ):
         """
         Initializes the GPIOListener with specified GPIO to signal mappings.
 
