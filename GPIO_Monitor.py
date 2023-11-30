@@ -1,12 +1,11 @@
 import threading
 import queue
-from listeners.keyboard_listener import listen_for_key
-from utils.signals import SignalType
 from listeners.gpio_listener import start_gpio_listener, SignalType
 
 def process_signal(signal):
     """
     Processes the given signal and prints the signal type.
+
     Args:
     signal (Signal): The signal to process.
     """
@@ -17,7 +16,7 @@ def process_signal(signal):
     return False
 
 def main():
-    print("Program is running. Press 'q' to exit.")
+    print("Program is running. Press Ctrl+C to exit.")
 
     signal_queue = queue.Queue()  # Queue for inter-thread communication
 
@@ -27,17 +26,8 @@ def main():
 
     try:
         while True:
-            # Listen for keyboard signals
-            keyboard_signal = listen_for_key()
-
-            # Process the keyboard signal
-            if keyboard_signal:
-                print(f"Keyboard Signal Received: {keyboard_signal.signal_type.name}")
-                if process_signal(keyboard_signal):
-                    break
-
             # Check if there is a signal from GPIO
-            while not signal_queue.empty():
+            if not signal_queue.empty():
                 gpio_signal = signal_queue.get()
                 print(f"GPIO Signal Received: {gpio_signal.signal_type.name}")
                 if process_signal(gpio_signal):
@@ -46,8 +36,9 @@ def main():
     except KeyboardInterrupt:
         print("Exiting the program.")
 
-    gpio_thread.join()  # Ensure the GPIO listener thread is also closed
-    print("Program exited.")
+    finally:
+        gpio_thread.join()  # Ensure the GPIO listener thread is also closed
+        print("Program exited.")
 
 if __name__ == "__main__":
     main()
