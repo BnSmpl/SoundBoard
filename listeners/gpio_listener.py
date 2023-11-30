@@ -4,8 +4,7 @@ import sys
 import os
 import RPi.GPIO as GPIO
 import time
-from utils.signals import Signal, SignalType
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) # Adds the parent directory to the path. used to import signals.py
+from SoundBoard.utils.signals import Signal, SignalType
 
 debounce_time = 0.1
 
