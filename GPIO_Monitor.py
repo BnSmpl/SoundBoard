@@ -1,44 +1,40 @@
-import threading
-import queue
-from listeners.gpio_listener import start_gpio_listener, SignalType
+import RPi.GPIO as GPIO
+import time
+import sys
 
-def process_signal(signal):
-    """
-    Processes the given signal and prints the signal type.
+# Define your GPIO ports here
+gpio_ports = [2, 3, 4, 17, 27, 22, 10, 9, 11, 5, 6, 13, 19, 26, 14, 15, 18, 23, 24, 25, 8, 7, 12, 16, 20, 21]
 
-    Args:
-    signal (Signal): The signal to process.
-    """
-    if signal:
-        print(f"Received signal: {signal.signal_type.name}")
-        if signal.signal_type == SignalType.QUIT:
-            return True
-    return False
+# Initialize GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+for port in gpio_ports:
+    GPIO.setup(port, GPIO.IN)
 
+# Function to process GPIO signal
+def process_signal(port, status):
+    if status:
+        print(f"GPIO Signal Received on port {port}: High")
+    else:
+        print(f"GPIO Signal Received on port {port}: Low")
+
+# Main function
 def main():
-    print("Program is running. Press Ctrl+C to exit.")
-
-    signal_queue = queue.Queue()  # Queue for inter-thread communication
-
-    # Start GPIO listener in a new thread
-    gpio_thread = threading.Thread(target=start_gpio_listener, args=(signal_queue,))
-    gpio_thread.start()
+    print("GPIO Monitoring started. Press CTRL+C to exit.")
+    port_status = {port: GPIO.input(port) for port in gpio_ports}
 
     try:
         while True:
-            # Check if there is a signal from GPIO
-            if not signal_queue.empty():
-                gpio_signal = signal_queue.get()
-                print(f"GPIO Signal Received: {gpio_signal.signal_type.name}")
-                if process_signal(gpio_signal):
-                    break
-
+            for port in gpio_ports:
+                current_status = GPIO.input(port)
+                if current_status != port_status[port]:
+                    process_signal(port, current_status)
+                    port_status[port] = current_status
+            time.sleep(0.1)  # Polling interval
     except KeyboardInterrupt:
-        print("Exiting the program.")
-
+        print("\nExiting...")
     finally:
-        gpio_thread.join()  # Ensure the GPIO listener thread is also closed
-        print("Program exited.")
+        GPIO.cleanup()  # Reset GPIO ports on exit
 
 if __name__ == "__main__":
     main()
