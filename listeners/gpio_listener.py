@@ -31,7 +31,7 @@ class GPIOListener:
         Returns: Signal object if the port is active, None otherwise.
         """
         current_time = time.time()
-        if GPIO.input(port) and (current_time - self.last_signal_time[port] > self.debounce_time):
+        if not GPIO.input(port) and (current_time - self.last_signal_time[port] > self.debounce_time):
             self.last_signal_time[port] = current_time
             return Signal(self.gpio_to_signal[port])
         return None
