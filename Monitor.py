@@ -2,7 +2,7 @@ import threading
 import queue
 from listeners.keyboard_listener import listen_for_key
 from utils.signals import SignalType
-from gpio_listener import start_gpio_listener
+from listeners.gpio_listener import start_gpio_listener, SignalType
 
 def process_signal(signal):
     """
