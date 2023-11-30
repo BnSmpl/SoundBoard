@@ -4,7 +4,7 @@ import sys
 import os
 import RPi.GPIO as GPIO
 import time
-from SoundBoard.utils.signals import Signal, SignalType
+from ..utils.signals import Signal, SignalType
 
 debounce_time = 0.1
 
