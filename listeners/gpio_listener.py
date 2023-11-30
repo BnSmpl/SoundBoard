@@ -1,8 +1,11 @@
 # Listens for GPIO signals and returns the corresponding Signal.
 
+import sys
+import os
 import RPi.GPIO as GPIO
 import time
 from utils.signals import Signal, SignalType
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) # Adds the parent directory to the path
 
 debounce_time = 0.1
 
