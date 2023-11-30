@@ -1,3 +1,5 @@
+# is used to test the GPIO listener. It prints the signal type when a signal is received.
+
 import queue
 import threading
 from listeners.gpio_listener import start_gpio_listener

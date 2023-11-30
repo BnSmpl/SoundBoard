@@ -1,3 +1,5 @@
+# Is used to test the keyboard listener. It prints the signal type when a signal is received.
+
 from listeners.keyboard_listener import listen_for_key
 from utils.signals import SignalType
 
