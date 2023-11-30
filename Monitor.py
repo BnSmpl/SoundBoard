@@ -2,10 +2,19 @@ import threading
 import queue
 from listeners.keyboard_listener import listen_for_key
 from utils.signals import SignalType
-from gpio_listener import GPIOListener, start_gpio_listener  # Import the GPIO listener
+from gpio_listener import start_gpio_listener
 
 def process_signal(signal):
-    # ... [Same as before] ...
+    """
+    Processes the given signal and prints the signal type.
+    Args:
+    signal (Signal): The signal to process.
+    """
+    if signal:
+        print(f"Received signal: {signal.signal_type.name}")
+        if signal.signal_type == SignalType.QUIT:
+            return True
+    return False
 
 def main():
     print("Program is running. Press 'q' to exit.")

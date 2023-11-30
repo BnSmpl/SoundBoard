@@ -18,10 +18,7 @@ class GPIOListener:
         self.last_signal_time = {port: 0 for port in gpio_to_signal}
         self.setup_gpio()
 
-    def setup_gpio(self):
-        """
-        Sets up the GPIO system for the specified ports.
-        """
+    def setup_gpio(self): # Sets up the GPIO system for the specified ports.
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
         for port in self.gpio_to_signal.keys():
@@ -29,13 +26,9 @@ class GPIOListener:
 
     def generate_signal(self, port):
         """
-        Checks the specified GPIO port and generates a signal if the port is active.
-
-        Args:
-        port (int): The GPIO port to check.
-
-        Returns:
-        Signal: The generated Signal object if the port is active, None otherwise.
+        Checks specified GPIO ports and generates a signal if the port is active.
+        Args: port (int): The GPIO port to check.
+        Returns: Signal object if the port is active, None otherwise.
         """
         current_time = time.time()
         if GPIO.input(port) and (current_time - self.last_signal_time[port] > self.debounce_time):
@@ -43,10 +36,7 @@ class GPIOListener:
             return Signal(self.gpio_to_signal[port])
         return None
 
-    def listen(self):
-        """
-        Main method to continuously monitor GPIO ports and generate signals.
-        """
+    def listen(self): # Continuously monitors GPIO ports and generates signals.
         try:
             while True:
                 for port in self.gpio_to_signal.keys():
