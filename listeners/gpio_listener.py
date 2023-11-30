@@ -45,7 +45,7 @@ class GPIOListener:
                         self.signal_queue.put(signal)
                         # Process the signal as needed
                         # print(f"Signal Generated: {signal}")
-                time.sleep(0.1)  # Polling interval
+                time.sleep(0.5)  # Polling interval
         except KeyboardInterrupt:
             print("GPIO listener interrupted. Cleaning up...")
         finally:
