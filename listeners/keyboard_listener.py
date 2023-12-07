@@ -13,11 +13,12 @@ key_to_signal = {
     '7': SignalType.SOUND7,
     '8': SignalType.SOUND8,
     '9': SignalType.SOUND9,
-    
+
     'r': SignalType.REC_BTN,
     's': SignalType.STOP_SOUND,
     'q': SignalType.QUIT
 }
+
 
 def listen_for_key():
     """

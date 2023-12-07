@@ -6,8 +6,9 @@ import RPi.GPIO as GPIO
 import time
 from utils.signals import Signal, SignalType
 
+
 class GPIOListener:
-    def __init__(self, gpio_to_signal, signal_queue, debounce_time=0.1 ):
+    def __init__(self, gpio_to_signal, signal_queue, debounce_time=0.1):
         """
         Initializes the GPIOListener with specified GPIO to signal mappings.
 
@@ -22,7 +23,7 @@ class GPIOListener:
         self.last_signal_time = {port: 0 for port in gpio_to_signal}
         self.setup_gpio()
 
-    def setup_gpio(self): # Sets up the GPIO system for the specified ports.
+    def setup_gpio(self):  # Sets up the GPIO system for the specified ports.
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
         for port in self.gpio_to_signal.keys():
@@ -40,7 +41,7 @@ class GPIOListener:
             return Signal(self.gpio_to_signal[port])
         return None
 
-    def listen(self): # Continuously monitors GPIO ports and generates signals.
+    def listen(self):  # Continuously monitors GPIO ports and generates signals.
         try:
             while True:
                 for port in self.gpio_to_signal.keys():
@@ -54,7 +55,8 @@ class GPIOListener:
             print("GPIO listener interrupted. Cleaning up...")
         finally:
             GPIO.cleanup()
-            
+
+
 def start_gpio_listener(signal_queue):
     """
     Initializes and starts the GPIO listener.
@@ -66,12 +68,12 @@ def start_gpio_listener(signal_queue):
         26: SignalType.SOUND1,
         13: SignalType.SOUND2,
         19: SignalType.SOUND3,
-        6:  SignalType.SOUND4,
-        5:  SignalType.SOUND5,
+        6: SignalType.SOUND4,
+        5: SignalType.SOUND5,
         20: SignalType.SOUND6,
         21: SignalType.SOUND7,
         12: SignalType.SOUND8,
-        7:  SignalType.SOUND9
+        7: SignalType.SOUND9
     }
     listener = GPIOListener(gpio_to_signal, signal_queue)
     listener.listen()
