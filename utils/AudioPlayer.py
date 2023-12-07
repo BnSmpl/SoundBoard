@@ -1,14 +1,9 @@
-from pydub import AudioSegment
-from pydub.playback import play
-from enum import Enum
-from ..soundDict import sounds
+from audioplayer import AudioPlayer
 
-enum test = sounds
+
 class Player:
-    
-    
-    def play():
-        
+
+    def play(signal):
         """
         switch signal:
             case Signal_1:
@@ -22,8 +17,5 @@ class Player:
             case Signal_5:
                 break
                 """
-            
-        
-        
-        song = AudioSegment.from_mp3("Sounds\\ahhhh.mp3" )
-        play(song)
+
+        AudioPlayer("Sounds/ahhhh.mp3").play(block=True)
