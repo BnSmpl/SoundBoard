@@ -1,5 +1,6 @@
 from enum import Enum, auto
 
+
 class SignalType(Enum):
     SOUND1 = auto()
     SOUND2 = auto()
@@ -10,10 +11,11 @@ class SignalType(Enum):
     SOUND7 = auto()
     SOUND8 = auto()
     SOUND9 = auto()
-    
+
     REC_BTN = auto()
     QUIT = auto()
     STOP_SOUND = auto()
+
 
 class Signal:
     def __init__(self, signal_type, data=None):
@@ -27,6 +29,7 @@ class Signal:
 
     def __str__(self):
         return f"Signal(type={self.signal_type}, data={self.data})"
+
 
 """
 Example usage

@@ -4,6 +4,7 @@ import queue
 import threading
 from listeners.gpio_listener import start_gpio_listener
 
+
 def process_signals(signal_queue):
     try:
         while True:
@@ -12,6 +13,7 @@ def process_signals(signal_queue):
             print(f"Received Signal: {signal}")
     except KeyboardInterrupt:
         print("Signal processing interrupted.")
+
 
 if __name__ == "__main__":
     # Create a queue for inter-thread communication

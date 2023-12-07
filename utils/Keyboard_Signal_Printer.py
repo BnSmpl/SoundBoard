@@ -3,6 +3,7 @@
 from listeners.keyboard_listener import listen_for_key
 from utils.signals import SignalType
 
+
 def process_signal(signal):
     """
     Processes the given signal and prints the signal type.
@@ -15,6 +16,7 @@ def process_signal(signal):
         if signal.signal_type == SignalType.QUIT:
             return True
     return False
+
 
 def main():
     print("Program is running. Press 'q' to exit.")
@@ -34,6 +36,7 @@ def main():
         print("Exiting the program.")
 
     print("Program exited.")
+
 
 if __name__ == "__main__":
     main()

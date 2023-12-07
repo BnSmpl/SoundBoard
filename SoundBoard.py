@@ -5,6 +5,7 @@ from listeners.keyboard_listener import listen_for_key
 from listeners.gpio_listener import start_gpio_listener, SignalType
 from utils.signals import Signal, SignalType
 
+
 # Function to process signals
 def process_signal(signal):
     if signal and signal.signal_type != SignalType.QUIT:
@@ -14,12 +15,13 @@ def process_signal(signal):
         return True
     return False
 
+
 def main():
     print("Program is running. Press 'q' to exit.")
 
     # Shared queue for signals
     signal_queue = queue.Queue()
-    
+
     # Start GPIO listener in a separate thread
     gpio_thread = threading.Thread(target=start_gpio_listener, args=(signal_queue,))
     gpio_thread.start()
@@ -46,6 +48,7 @@ def main():
         gpio_thread.join()  # Ensure GPIO thread is properly closed
 
     print("Program exited.")
+
 
 if __name__ == "__main__":
     main()
