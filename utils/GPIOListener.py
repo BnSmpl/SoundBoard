@@ -4,7 +4,7 @@ import sys
 import os
 import RPi.GPIO as GPIO
 import time
-from signals import Signal, SignalType
+from Signals import Signals, SignalType
 
 
 class GPIOListener:
@@ -38,7 +38,7 @@ class GPIOListener:
         current_time = time.time()
         if not GPIO.input(port) and (current_time - self.last_signal_time[port] > self.debounce_time):
             self.last_signal_time[port] = current_time
-            return Signal(self.gpio_to_signal[port])
+            return Signals(self.gpio_to_signal[port])
         return None
 
     def listen(self):  # Continuously monitors GPIO ports and generates signals.

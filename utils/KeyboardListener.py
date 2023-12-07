@@ -1,7 +1,7 @@
 import sys
 import tty
 import termios
-from utils.signals import Signal, SignalType
+from utils.Signals import Signals, SignalType
 
 key_to_signal = {
     '1': SignalType.SOUND1,
@@ -33,4 +33,4 @@ def listen_for_key():
     finally:
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
 
-    return Signal(key_to_signal[ch]) if ch in key_to_signal else None
+    return Signals(key_to_signal[ch]) if ch in key_to_signal else None
