@@ -1,9 +1,9 @@
 import queue
 import threading
-from soundDict import sounds
-from listeners.keyboard_listener import listen_for_key
-from listeners.gpio_listener import start_gpio_listener, SignalType
-from utils.signals import Signal, SignalType
+from SoundDict import sounds
+from utils.KeyboardListener import listen_for_key
+from utils.GPIOListener import start_gpio_listener, SignalType
+from utils.Signals import Signal, SignalType
 
 
 # Function to process signals

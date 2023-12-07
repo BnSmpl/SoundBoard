@@ -1,7 +1,7 @@
 import sys
 import tty
 import termios
-from utils.signals import Signal, SignalType
+from utils.Signals import Signal, SignalType
 
 key_to_signal = {
     '1': SignalType.SOUND1,

@@ -2,7 +2,7 @@
 
 import queue
 import threading
-from gpio_listener import start_gpio_listener
+from GPIOListener import start_gpio_listener
 
 
 def process_signals(signal_queue):
