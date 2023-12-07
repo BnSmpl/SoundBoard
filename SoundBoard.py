@@ -4,7 +4,7 @@ import threading
 from SoundDict import sounds
 from utils.KeyboardListener import listen_for_key
 from utils.GPIOListener import start_gpio_listener
-from utils.SignalType import SignalType
+from utils import SignalType
 from utils.GPIOSignalPrinter import process_signals
 
 sys.path.insert(0, "..")
