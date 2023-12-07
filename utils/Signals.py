@@ -1,9 +1,9 @@
-from SignalType import SignalType
+from signalType import signalType
 
 
 class Signals:
     def __init__(self, signal_type, data=None):
-        if not isinstance(signal_type, SignalType):
+        if not isinstance(signal_type, signalType):
             raise ValueError("Invalid signal type")
         self.signal_type = signal_type
         self.data = data

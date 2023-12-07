@@ -3,16 +3,16 @@ import threading
 from SoundDict import sounds
 from utils.KeyboardListener import listen_for_key
 from utils.GPIOListener import start_gpio_listener
-from utils.SignalType import SignalType
+from utils.signalType import signalType
 from utils.GPIOSignalPrinter import process_signals
 
 
 # Function to process signals
 def process_signal(signal):
-    if signal and signal.signal_type != SignalType.QUIT:
+    if signal and signal.signal_type != signalType.QUIT:
         sound_info = signal.signal_type.name + " | " + sounds.get(signal.signal_type.name)
         print(sound_info)  # Replace this with actual sound playing logic
-    elif signal and signal.signal_type == SignalType.QUIT:
+    elif signal and signal.signal_type == signalType.QUIT:
         return True
     return False
 

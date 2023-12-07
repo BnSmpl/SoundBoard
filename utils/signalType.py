@@ -1,7 +1,7 @@
 from enum import Enum, auto
 
 
-class SignalType(Enum):
+class signalType(Enum):
     SOUND1 = auto()
     SOUND2 = auto()
     SOUND3 = auto()
