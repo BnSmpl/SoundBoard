@@ -2,22 +2,22 @@ import sys
 import tty
 import termios
 from utils.Signals import Signals
-from signalType import signalType
+from SignalType import SignalType
 
 key_to_signal = {
-    '1': signalType.SOUND1,
-    '2': signalType.SOUND2,
-    '3': signalType.SOUND3,
-    '4': signalType.SOUND4,
-    '5': signalType.SOUND5,
-    '6': signalType.SOUND6,
-    '7': signalType.SOUND7,
-    '8': signalType.SOUND8,
-    '9': signalType.SOUND9,
+    '1': SignalType.SOUND1,
+    '2': SignalType.SOUND2,
+    '3': SignalType.SOUND3,
+    '4': SignalType.SOUND4,
+    '5': SignalType.SOUND5,
+    '6': SignalType.SOUND6,
+    '7': SignalType.SOUND7,
+    '8': SignalType.SOUND8,
+    '9': SignalType.SOUND9,
 
-    'r': signalType.REC_BTN,
-    's': signalType.STOP_SOUND,
-    'q': signalType.QUIT
+    'r': SignalType.REC_BTN,
+    's': SignalType.STOP_SOUND,
+    'q': SignalType.QUIT
 }
 
 

@@ -5,7 +5,7 @@ import os
 import RPi.GPIO as GPIO
 import time
 from Signals import Signals
-from signalType import signalType
+from SignalType import SignalType
 
 
 class GPIOListener:
@@ -66,15 +66,15 @@ def start_gpio_listener(signal_queue):
     signal_queue (queue.Queue): Queue for inter-thread communication.
     """
     gpio_to_signal = {
-        26: signalType.SOUND1,
-        13: signalType.SOUND2,
-        19: signalType.SOUND3,
-        6: signalType.SOUND4,
-        5: signalType.SOUND5,
-        20: signalType.SOUND6,
-        21: signalType.SOUND7,
-        12: signalType.SOUND8,
-        7: signalType.SOUND9
+        26: SignalType.SOUND1,
+        13: SignalType.SOUND2,
+        19: SignalType.SOUND3,
+        6: SignalType.SOUND4,
+        5: SignalType.SOUND5,
+        20: SignalType.SOUND6,
+        21: SignalType.SOUND7,
+        12: SignalType.SOUND8,
+        7: SignalType.SOUND9
     }
     listener = GPIOListener(gpio_to_signal, signal_queue)
     listener.listen()

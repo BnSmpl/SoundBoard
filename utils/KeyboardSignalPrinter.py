@@ -1,7 +1,7 @@
 # Is used to test the keyboard listener. It prints the signal type when a signal is received.
 
 from KeyboardListener import listen_for_key
-from signalType import signalType
+from SignalType import SignalType
 
 
 def process_signal(signal):
@@ -13,7 +13,7 @@ def process_signal(signal):
     """
     if signal:
         print(f"Received signal: {signal.signal_type.name}")
-        if signal.signal_type == signalType.QUIT:
+        if signal.signal_type == SignalType.QUIT:
             return True
     return False
 
