@@ -17,7 +17,7 @@ class SignalType(Enum):
     STOP_SOUND = auto()
 
 
-class Signal:
+class Signals:
     def __init__(self, signal_type, data=None):
         if not isinstance(signal_type, SignalType):
             raise ValueError("Invalid signal type")
