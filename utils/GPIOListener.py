@@ -4,7 +4,8 @@ import sys
 import os
 import RPi.GPIO as GPIO
 import time
-from Signals import Signals, SignalType
+from Signals import Signals
+from SignalType import SignalType
 
 
 class GPIOListener:
