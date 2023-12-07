@@ -4,6 +4,7 @@ from SoundDict import sounds
 from utils.KeyboardListener import listen_for_key
 from utils.GPIOListener import start_gpio_listener, SignalType
 from utils.Signals import Signal, SignalType
+from utils.GPIOSignalPrinter import process_signals
 
 
 # Function to process signals
@@ -25,6 +26,8 @@ def main():
     # Start GPIO listener in a separate thread
     gpio_thread = threading.Thread(target=start_gpio_listener, args=(signal_queue,))
     gpio_thread.start()
+
+    process_signals(signal_queue)
 
     try:
         while True:
