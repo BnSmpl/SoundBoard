@@ -28,6 +28,11 @@ GPIO.setup(C2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(C3, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(C4, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
+def play_mp3(file_path):
+    player = MPyg321Player()
+    player.play_song(file_path)
+    while True:
+        time.sleep(1)
 
 def readLine(line, characters):
     GPIO.output(line, GPIO.HIGH)
