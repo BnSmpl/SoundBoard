@@ -3,7 +3,7 @@
 
 import RPi.GPIO as GPIO
 import time
-from utils.SampleAudioPlayer import play_mp3
+from mpyg321.mpyg321 import MPyg321Player
 
 L1 = 5
 L2 = 6
