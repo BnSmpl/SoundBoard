@@ -1,12 +1,11 @@
 from mpyg321.mpyg321 import MPyg321Player
 import time
 
-def play_mp3(file_path):
+
+def play_mp3(mp3):
+    print(mp3)
+    soundPath = './Sounds/'
     player = MPyg321Player()
-    player.play_song(file_path)
+    player.play_song(soundPath + mp3)
     while True:
         time.sleep(1)
-
-if __name__ == "__main__":
-    file_path = "lenz.mp3"
-    play_mp3(file_path)
