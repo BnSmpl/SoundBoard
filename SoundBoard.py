@@ -1,9 +1,13 @@
 import queue
+import sys
 import threading
-from soundDict import sounds
-from listeners.keyboard_listener import listen_for_key
-from listeners.gpio_listener import start_gpio_listener, SignalType
-from utils.signals import Signal, SignalType
+from SoundDict import sounds
+from utils.KeyboardListener import listen_for_key
+from utils.GPIOListener import start_gpio_listener
+import utils.SignalType as SignalType
+from utils.GPIOSignalPrinter import process_signals
+
+sys.path.insert(0, "..")
 
 # Function to process signals
 def process_signal(signal):
@@ -13,7 +17,7 @@ def process_signal(signal):
     elif signal and signal.signal_type == SignalType.QUIT:
         return True
     return False
-
+  
 def main():
     print("Program is running. Press 'q' to exit.")
 
@@ -23,6 +27,8 @@ def main():
     # Start GPIO listener in a separate thread
     gpio_thread = threading.Thread(target=start_gpio_listener, args=(signal_queue,))
     gpio_thread.start()
+    
+    process_signals(signal_queue)
 
     try:
         while True:
