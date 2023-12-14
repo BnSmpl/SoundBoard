@@ -4,6 +4,7 @@ import threading
 from SoundDict import sounds
 from utils.KeyboardListener import listen_for_key
 from utils.GPIOListener import start_gpio_listener
+from utils.SampleAudioPlayer import play_mp3
 import utils.SignalType as SignalType
 from utils.GPIOSignalPrinter import process_signals
 
@@ -36,6 +37,7 @@ def main():
             try:
                 signal = signal_queue.get_nowait()
                 if process_signal(signal):
+                    play_mp3(signal)
                     break
             except queue.Empty:
                 pass
