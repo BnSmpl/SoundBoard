@@ -1,2 +1,2 @@
 RPi.GPIO
-mpg321
+mpyg321
