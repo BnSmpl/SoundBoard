@@ -1,4 +1,4 @@
 __all__ = [
     'ButtonMatrix',
-    'SampleAudioPlayer'
+    'AudioPlayer.py'
 ]

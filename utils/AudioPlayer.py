@@ -7,4 +7,4 @@ def play_mp3(mp3):
     soundPath = './Sounds/'
     player = MPyg321Player()
     player.play_song(soundPath + mp3)
-    time.sleep(1)
+    time.sleep(.5)
