@@ -3,8 +3,7 @@ from utils.SampleAudioPlayer import play_mp3
 
 
 def main():
-    while True:
-        play_mp3(listener())
+    play_mp3(listener())
 
 
 try:
