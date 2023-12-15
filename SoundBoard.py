@@ -6,4 +6,9 @@ def main():
     while True:
         play_mp3(listener())
 
-main()
+
+try:
+    while True:
+        main()
+except KeyboardInterrupt:
+    print("\nBye bye!")
