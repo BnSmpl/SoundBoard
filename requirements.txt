@@ -1,2 +1,2 @@
-Rp.GPIO
+RPi.GPIO
 mpg321
