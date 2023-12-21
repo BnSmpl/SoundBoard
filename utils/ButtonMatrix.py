@@ -66,4 +66,4 @@ def listener():
             if charactersL4:
                 return charactersL4
     except KeyboardInterrupt:
-        print("\nBye bye Listener!")
+        print("\nBye bye!")
