@@ -4,6 +4,7 @@
 import RPi.GPIO as GPIO
 import time
 
+# Definierung der GPIO Pins
 L1 = 5
 L2 = 6
 L3 = 13
@@ -13,7 +14,9 @@ C1 = 12
 C2 = 16
 C3 = 20
 C4 = 21
+##################################
 
+# Setup für den GPIO Listener
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
@@ -29,6 +32,7 @@ GPIO.setup(C4, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
 def readLine(line, characters):
+    # Wenn ein Button gedrückt wird, wird der dafür festgelegte Wert (Dateiname) zurückgegeben
     GPIO.output(line, GPIO.HIGH)
     if GPIO.input(C1) == 1:
         return characters[0]
@@ -42,6 +46,7 @@ def readLine(line, characters):
 
 
 def listener():
+    # Start der Überwachung der Buttons
     try:
         while True:
             charactersL1 = readLine(L1, ["ahhhh.mp3", "beback.mp3", "boom.mp3", "A"])
@@ -49,6 +54,7 @@ def listener():
             charactersL3 = readLine(L3, ["gae.mp3", "giveuup.mp3", "lenz.mp3", "C"])
             charactersL4 = readLine(L4, ["*", "0", "#", "D"])
             time.sleep(0.1)
+            # Wenn ein Button gedrückt würde, wird ein Wert gesetzt (Dateiname) und dieser Wert wird returned
             if charactersL1:
                 return charactersL1
             if charactersL2:
@@ -58,4 +64,4 @@ def listener():
             if charactersL4:
                 return charactersL4
     except KeyboardInterrupt:
-        print("\nBye bye!")
+        print("\nBye bye Listener!")
