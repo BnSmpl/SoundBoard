@@ -6,7 +6,7 @@ def play_mp3(mp3: str):
     # Path der Audiodateien definieren
     soundPath = './Sounds/'
 
-    print('Currently playing: "' + mp3 + u"\u266C")
+    # print('Currently playing: "' + mp3)
 
     # Audioplayer initailisieren und dann den entsprechenden Sound abspielen
     player = MPyg321Player()
