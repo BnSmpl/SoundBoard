@@ -1,10 +1,10 @@
 # Button Matrix Code #
-# Reads button input  #
+# Liest den Input der getätigten Knopfdrücke  #
 
 import RPi.GPIO as GPIO
 import time
 
-# Definierung der GPIO Pins
+# Definierung der GPIO Pins #
 L1 = 5
 L2 = 6
 L3 = 13
@@ -14,9 +14,9 @@ C1 = 12
 C2 = 16
 C3 = 20
 C4 = 21
-##################################
+#############################
 
-# Setup für den GPIO Listener
+# Setup für den GPIO Listener #
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
@@ -29,8 +29,10 @@ GPIO.setup(C1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(C2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(C3, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(C4, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+###############################
 
 
+# Hauptfunktion, welche die empfangenen Signale liest
 def readLine(line, characters):
     # Wenn ein Button gedrückt wird, wird der dafür festgelegte Wert (Dateiname) zurückgegeben
     GPIO.output(line, GPIO.HIGH)
