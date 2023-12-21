@@ -4,11 +4,12 @@ import time
 
 def play_mp3(mp3: str):
     # Path der Audiodateien definieren
-    soundPath = "./Sounds/"
+    soundPath = './Sounds/'
 
-    print("Currently playing: \"" + mp3 + "\"")
+    if mp3 is not None:
+        print('Currently playing: "' + mp3 + '"')
 
-    # Audioplayer initailisieren und dann den entsprechenden Sound abspielen
-    player = MPyg321Player()
-    player.play_song(soundPath + mp3)
-    time.sleep(.5)
+        # Audioplayer initailisieren und dann den entsprechenden Sound abspielen
+        player = MPyg321Player()
+        player.play_song(soundPath + mp3)
+        time.sleep(.5)
