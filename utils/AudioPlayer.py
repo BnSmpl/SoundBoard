@@ -2,11 +2,11 @@ from mpyg321.mpyg321 import MPyg321Player
 import time
 
 
-def play_mp3(mp3):
+def play_mp3(mp3: str):
     # Path der Audiodateien definieren
     soundPath = './Sounds/'
 
-    # print('Currently playing: "' + mp3 + '" ♬')
+    print('Currently playing: "' + mp3 + u"\u266C")
 
     # Audioplayer initailisieren und dann den entsprechenden Sound abspielen
     player = MPyg321Player()
