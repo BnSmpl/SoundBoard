@@ -1,5 +1,5 @@
-# Code to test button matrix
-# Will print every key input
+# Button Matrix Code #
+# Reads button input  #
 
 import RPi.GPIO as GPIO
 import time
