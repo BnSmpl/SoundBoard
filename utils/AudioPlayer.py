@@ -3,7 +3,7 @@ import time
 
 
 def play_mp3(mp3):
-    print('Currently playing:' + mp3)
+    print('Currently playing: "' + mp3 + '" ♬')
     soundPath = './Sounds/'
     player = MPyg321Player()
     player.play_song(soundPath + mp3)
